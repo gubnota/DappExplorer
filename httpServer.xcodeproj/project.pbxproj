@@ -11,11 +11,11 @@
 		942EEB9729238B2700825BA9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 942EEB9629238B2700825BA9 /* SceneDelegate.swift */; };
 		942EEB9929238B2700825BA9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 942EEB9829238B2700825BA9 /* ViewController.swift */; };
 		942EEBAA29238BFC00825BA9 /* Swifter in Frameworks */ = {isa = PBXBuildFile; productRef = 942EEBA929238BFC00825BA9 /* Swifter */; };
+		94473E04292F1A10006DD850 /* dist in Resources */ = {isa = PBXBuildFile; fileRef = 94473E03292F1A10006DD850 /* dist */; };
 		949E75B92924C56A00B8F8D3 /* httpServer.entitlements in Sources */ = {isa = PBXBuildFile; fileRef = 942EEBAB29238F6C00825BA9 /* httpServer.entitlements */; };
 		949E75BA2924C56A00B8F8D3 /* Main.storyboard in Sources */ = {isa = PBXBuildFile; fileRef = 942EEB9A29238B2700825BA9 /* Main.storyboard */; };
 		949E75BB2924C56A00B8F8D3 /* Assets.xcassets in Sources */ = {isa = PBXBuildFile; fileRef = 942EEB9D29238B2800825BA9 /* Assets.xcassets */; };
 		949E75BC2924C56A00B8F8D3 /* LaunchScreen.storyboard in Sources */ = {isa = PBXBuildFile; fileRef = 942EEB9F29238B2800825BA9 /* LaunchScreen.storyboard */; };
-		949E75C12924CB5C00B8F8D3 /* dist in Resources */ = {isa = PBXBuildFile; fileRef = 949E75C02924CB5C00B8F8D3 /* dist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,7 +28,7 @@
 		942EEBA029238B2800825BA9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		942EEBA229238B2800825BA9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		942EEBAB29238F6C00825BA9 /* httpServer.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = httpServer.entitlements; sourceTree = "<group>"; };
-		949E75C02924CB5C00B8F8D3 /* dist */ = {isa = PBXFileReference; lastKnownFileType = folder; name = dist; path = "../../Function/seer.eco-vite/dist"; sourceTree = "<group>"; };
+		94473E03292F1A10006DD850 /* dist */ = {isa = PBXFileReference; lastKnownFileType = folder; path = dist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -46,7 +46,7 @@
 		942EEB8829238B2700825BA9 = {
 			isa = PBXGroup;
 			children = (
-				949E75C02924CB5C00B8F8D3 /* dist */,
+				94473E03292F1A10006DD850 /* dist */,
 				942EEB9329238B2700825BA9 /* httpServer */,
 				942EEB9229238B2700825BA9 /* Products */,
 			);
@@ -139,7 +139,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				949E75C12924CB5C00B8F8D3 /* dist in Resources */,
+				94473E04292F1A10006DD850 /* dist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -313,7 +313,7 @@
 				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -344,7 +344,7 @@
 				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

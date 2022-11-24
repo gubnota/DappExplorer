@@ -3,6 +3,30 @@ import UIKit
 import WebKit
 import Swifter
 
+extension FileManager {
+    func listFiles(path: String) -> [URL] {
+        let baseurl: URL = URL(fileURLWithPath: path)
+        var urls = [URL]()
+        enumerator(atPath: path)?.forEach({ (e) in
+            guard let s = e as? String else { return }
+            let relativeURL = URL(fileURLWithPath: s, relativeTo: baseurl)
+            let url = relativeURL.absoluteURL
+            
+            urls.append(url)
+        })
+        return urls
+    }
+}
+
+extension URL {
+    func subDirectories() throws -> [URL] {
+        print("contentsOfDir \(self)")
+        // @available(macOS 10.11, iOS 9.0, *)
+        guard hasDirectoryPath else { return [] }
+        return try FileManager.default.contentsOfDirectory(at: self, includingPropertiesForKeys: nil, options: [.skipsHiddenFiles]).filter(\.hasDirectoryPath)
+    }
+}
+
 class ViewController: UIViewController, WKNavigationDelegate {
 
     var webView: WKWebView!
@@ -15,22 +39,27 @@ class ViewController: UIViewController, WKNavigationDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+         let distDir = Bundle.main.url(forResource: "dist", withExtension: nil)
+        let server = HttpServer()
+        server["/:path"] = shareFilesFromDirectory(distDir!.path)//String(distDir))
+        print("distDir = \(distDir)")
+        do {
+            let subDirs = try distDir?.subDirectories()
+            print("subDirs + \(subDirs)")
+            for dir in subDirs ?? [] {
+                let relativePath = dir.absoluteString[distDir!.absoluteString.endIndex ..< dir.absoluteString.endIndex]
+                print("relativePath \(relativePath)")
+                server["/\(relativePath)/:path"] = shareFilesFromDirectory(String("\(dir.path)"))
+            }
+        } catch {
+            print(error)
+        }
+            
         
-//        if let indexURL = Bundle.main.url(forResource: "seer_dao", withExtension: "html",subdirectory: "dist"){
-        let indexPath = Bundle.main.path(forResource: "index", ofType: "html", inDirectory: "dist")!
-//        if         {
-            let start = indexPath.index(indexPath.startIndex, offsetBy: 0)
-            let end = indexPath.index(indexPath.endIndex, offsetBy: -10)
-            let range = start..<end
-            let distDir = indexPath[range]// remove index.html at the end
-            
-            let server = HttpServer()
-            
-            server["/:path"] = shareFilesFromDirectory(String(distDir))
-        server["/assets/:path"] = shareFilesFromDirectory(String(distDir+"/assets"))
-        server["/01head/:path"] = shareFilesFromDirectory(String(distDir+"/01head"))
-        server["/03value/:path"] = shareFilesFromDirectory(String(distDir+"/03value"))
-        server["/04create/:path"] = shareFilesFromDirectory(String(distDir+"/04create"))
+//        server["/assets/:path"] = shareFilesFromDirectory(String(distDir!.path+"/assets"))
+//        server["/01head/:path"] = shareFilesFromDirectory(String(distDir!.path+"/01head"))
+//        server["/03value/:path"] = shareFilesFromDirectory(String(distDir!.path+"/03value"))
+//        server["/04create/:path"] = shareFilesFromDirectory(String(distDir!.path+"/04create"))
 
         
             do {
@@ -38,9 +67,10 @@ class ViewController: UIViewController, WKNavigationDelegate {
                 server.start(8080)
                 print(server)
                 webView.load(URLRequest(url: URL(string: "http://127.0.0.1:8080/index.html")!))
+                
             }
         catch {
-print("err")
+print(error)
             }
 
 //            webView.loadFileURL(indexURL, allowingReadAccessTo: indexURL)
